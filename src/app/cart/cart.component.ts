@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
 
   bikes: Array<IBike> = [];
   myName = '';
-  book = [];
+  books = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -30,18 +30,50 @@ export class CartComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.book = await this.getBooks('book');
-    // this.createBook('book', {title: 'New', price: '300'});
-
+    await this.refresh();
+    // this.createCar('car', { make: 'Tesla', model: 'X'});
+    // this.updateCar('car/id/1', { make: 'Ford', model: 'Fiasta'});
   }
-// getCars('book);
- async getBooks(path: string) {
-   const resp = await this.http.get(path);
-   console.log('resp from getBooks()', resp);
-   return resp;
- }
- async createBook(path: string, payload: any) {
-   const resp = await this.http.post(path, payload);
-   console.log('from createBook resp: ', resp);
- }
-}
+
+  async refresh() {
+    this.books = await this.getBooks('book');
+  }
+
+  // getCars('car');
+  async getBooks(path: string) {
+    const resp = await this.http.get(path);
+    // console.log('resp from getBooks()', resp);
+    return resp;
+  }
+
+  async createBook() {
+    const book = {
+      make: null,
+      model: null,
+      year: null
+    };
+    const resp = await this.http.post('book', book);
+    // console.log('from createBook resp: ', resp);
+    if (resp) {
+      // this.refresh();
+      this.books.unshift(resp);
+    } else {
+      this.toastService.showToast('danger', 3000, 'Book create failed!');
+    }
+    return resp;
+  }
+
+  async updateBook(book: any) {
+    // console.log('from updateBook book: ', book);
+    const resp = await this.http.put(`book/id/${book.id}`, book);
+    if (resp) {
+      this.toastService.showToast('success', 3000, 'Book updated successfully!');
+    }
+    return resp;
+  }
+  async removeBook(book: any, index: number) {
+    // console.log('from removeBook...', index);
+    this.books.splice(index, 1);
+  }
+  }
+

@@ -4,7 +4,7 @@ import { ToastService } from '../toast/toast.service';
 import { HttpService } from '../../shared-service/http.service';
 export interface IUser {
   id?: number;
-  username: string;
+  email: string;
   password: string;
 }
 @Component({
@@ -13,7 +13,10 @@ export interface IUser {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: IUser = { username: null, password: null };
+  user: IUser = { email: null, password: null };
+  currentUser = {};
+  loggedIn = false;
+  someVar: boolean;
   constructor(
     private router: Router,
     private toastService: ToastService,
@@ -22,15 +25,26 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    const token = localStorage.getItem('id_token');
+    // console.log('from login ngOnInit token: ', token);
+    if (token != null) {
+      this.loggedIn = true;
 
-  }
+      /* navigates to home page */ this.router.navigate (['']);
+     } else {
+        this.loggedIn = false;
+      }
+
+    }
+    // this.loggedIn = localStorage.getItem('id_token')  != null || false;
+  // }
 
   async login(user: IUser) {
     // const payload = {
       // email: 'eboehm@mail.test.com',
       // password: '1234'
     // };
-    console.log ('from login user: ', user);
+    // console.log ('from login user: ', user);
     const resp: any = await this.http.post('user/login', user);
     if (resp && resp.token) {
       localStorage.setItem('id_token', resp.token);

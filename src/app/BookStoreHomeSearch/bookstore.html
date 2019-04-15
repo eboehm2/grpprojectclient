@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="bookstore.css">
+
+    <title> Book Store </title>
+</head>
+<div class="jumbotron">
+<div class="row">
+<div class="logo col-xl-3 col-lg-3 col-md-3 col-sm-3" img src="Books-Store-Logo.jpg" class="img-responsive" alt="Book store logo"></div>
+<h3 class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> Ubiqum Book Store </h3>
+<form class="col-xl-2 col-lg-2 2col-md-3 col-sm-2" id="filterbox"> 
+<input type="text" id="myInput" placeholder="Search for books..">
+</form>
+</div>
+</div>
+
+<div id="allbooks" class="container"></div>
+<ul class="flip-container" ontouchstart="this.classList.toggle('hover');">
+    <li class="flipper">
+        <div id="front">
+                
+            </div>
+        <div id="back">
+           <div id="title"></div>
+           <div id="description"></div>
+        <a data-fancybox="gallery"> </a>
+            <!-- back content -->
+        </div>
+
+    </li>
+    </ul>
+
+<!--
+   <div id="front">
+     <div class="mycovers">
+         <div class="title"> </div>
+         <div class="description"> </div>
+         <div class="button"></div>
+     </div>
+     <div id="title"></div>
+    </div>
+-->
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bookmain.js">
+
+
+    </script>
+
+
+</body>
+
+</html>
