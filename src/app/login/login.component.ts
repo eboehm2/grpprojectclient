@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
-
+import { HttpService } from '../../shared-service/http.service';
 export interface IUser {
   id?: number;
   username: string;
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   user: IUser = { username: null, password: null };
   constructor(
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private http: HttpService
   ) {
   }
 
@@ -24,5 +25,20 @@ export class LoginComponent implements OnInit {
 
   }
 
+  async login(user: IUser) {
+    // const payload = {
+      // email: 'eboehm@mail.test.com',
+      // password: '1234'
+    // };
+    console.log ('from login user: ', user);
+    const resp: any = await this.http.post('user/login', user);
+    if (resp && resp.token) {
+      localStorage.setItem('id_token', resp.token);
+      this.toastService.showToast('success', 1000000, 'Login Success.');
+      this.router.navigate(['']);
+    } else {
+      this.toastService.showToast('danger', 3000, 'Login Failed.');
+      }
+    }
+  }
 
-}
