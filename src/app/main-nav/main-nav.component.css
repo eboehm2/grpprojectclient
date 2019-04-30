@@ -1,11 +1,15 @@
 .nav-action-container {
   margin: 20px auto;
   width: 90%;
+
+  
 }
 .main-nav {
-  padding: 10px 5%;
+
+ 
   width: 100%;
   background-color: transparent !important;
+
 }
 .contact-button{
   margin-right: 9px;
@@ -25,4 +29,7 @@
 
 .brand {
   height: 65px;
+}
+.navbar{
+  padding: .2rem .2rem;
 }

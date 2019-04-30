@@ -7,21 +7,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-loggedIn = false;
+// loggedIn = false;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+
   ) { }
 // if not logged in redirects to login page
   ngOnInit() {
-    const token = localStorage.getItem('id_token');
-    console.log('from login ngOnInit token: ', token);
-    if (token == null) {
-      this.loggedIn = false;
-      this.router.navigate (['']);
-     } else {
-        this.loggedIn = false;
-      }
-  }
+     const token = localStorage.getItem('id_token');
+    // console.log('from login ngOnInit token: ', token);
+      // if (token == null) {
+      //  this.loggedIn = false;
+      //  this.router.navigate (['./login']);
+    // } else {
+        // this.loggedIn = true;
 
+  //  }
+
+}
 }

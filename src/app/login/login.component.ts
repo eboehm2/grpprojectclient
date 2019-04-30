@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { HttpService } from '../../shared-service/http.service';
+
 export interface IUser {
   id?: number;
   email: string;
@@ -16,7 +17,6 @@ export class LoginComponent implements OnInit {
   user: IUser = { email: null, password: null };
   currentUser = {};
   loggedIn = false;
-  someVar: boolean;
   constructor(
     private router: Router,
     private toastService: ToastService,
@@ -25,34 +25,25 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = localStorage.getItem('id_token');
-    // console.log('from login ngOnInit token: ', token);
+     const token = localStorage.getItem('id_token');
     if (token != null) {
-      this.loggedIn = true;
+      // this.loggedIn = true;
+      // this.router.navigate(['./home']);
+    //  } else {
+      //  this.loggedIn = false;
+     }
+  }
 
-      /* navigates to home page */ this.router.navigate (['']);
-     } else {
-        this.loggedIn = false;
-      }
-
-    }
-    // this.loggedIn = localStorage.getItem('id_token')  != null || false;
-  // }
 
   async login(user: IUser) {
-    // const payload = {
-      // email: 'eboehm@mail.test.com',
-      // password: '1234'
-    // };
-    // console.log ('from login user: ', user);
     const resp: any = await this.http.post('user/login', user);
     if (resp && resp.token) {
       localStorage.setItem('id_token', resp.token);
-      this.toastService.showToast('success', 1000000, 'Login Success.');
-      this.router.navigate(['']);
+      this.toastService.showToast('success', 3000, 'Login Success.');
+      //  this.router.navigate(['']);
+      // this.router.navigate(['./cart']);
     } else {
       this.toastService.showToast('danger', 3000, 'Login Failed.');
-      }
     }
-  }
+  }}
 

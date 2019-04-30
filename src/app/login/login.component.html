@@ -1,22 +1,21 @@
 <div class="login-grid">
   <div></div>
   <form class="login-form box-shadow">
-    <div class="login-logo">
-      <img src="../../assets/logo.jpeg" alt="logo">
-    </div>      
+   <h2>Login</h2>     
     <div class="form-group">
-      <label for="exampleInputEmail1">Username</label>
-      <input [(ngModel)] ="user.email" name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+      <label for="exampleInputEmail1">Email</label>
+      <input [(ngModel)]="user.email" name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User Name">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input [(ngModel)] ="user.password"name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <input [(ngModel)]="user.password" name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Remember Me?</label>
     </div>
-    <button mat-raised-button color="primary" (click)="login(user)">Login</button>
+    <button mat-raised-button color="primary" routerLink = "./cart" (click)="login(user)">Login</button>
+    <button class="btn btn-primary" routerLink="/register" class="btn btn-link">Register</button>
   </form>
   <div></div>
 </div>

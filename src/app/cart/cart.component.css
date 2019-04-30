@@ -1,43 +1,149 @@
 
-.main-nav {
-  margin:20px auto;
-  background-color: transparent !important;
-  padding:0 5%;
+#allbooks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
 }
-.nav-action-container {
-  padding:0 5%;
+.jumbotron{
+  background-image: url('#');
+  background-repeat: no-repeat;
+  background-size: contain;
+  
+  
 }
+#filterbox{
+  display:flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+img{
+  width: 100%;
+}
+
+.flip-container {
+perspective: 1000px;
+  margin-bottom: 3%;
+  
+}
+/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-container, .front, .back {
+width: 320px;
+height: 480px;
+}
+
+/* flip speed goes here */
+.flipper {
+transition: 0.6s;
+transform-style: preserve-3d;
+
+position: relative;
+}
+.btn-danger{
+  backface-visibility: hidden;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+backface-visibility: hidden;
+
+position: absolute;
+top: 0;
+left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+z-index: 2;
+/* for firefox 31 */
+transform: rotateY(0deg);
+  
+}
+
+/* back, initially hidden pane */
+.back {
+transform: rotateY(180deg);
+  
+}
+.details{
+  visibility: hidden;
+}
+
 .contact-grid {
-  display: grid;
-  margin: 20px auto;
-  width: 90%;
-  height: 80vh;
-  max-height: 80vh;
-  overflow: auto;
+display: grid;
+margin: 20px auto;
+width: 90%;
+height: 80vh;
+max-height: 80vh;
+overflow: auto;
 }
 
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-gap: 1em;
+form label {
+  font-size: 1.2em
 }
 
-.nav-action-container>li>button {
-  margin-right: 9px;
+form .radio label {
+  font-size: 0.875em
 }
 
-.search-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  width: 100%;
+h3 {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-weight: bold;
+  color: #31353D;
+  margin-top: 1em;
+  padding: 1em;
 }
-.pull-right {
-  float: right;
+
+form {
+  padding-right: 1.5em;
+  border-right: 2px solid #eee
 }
-.cover {
-  height: 150px;
-  width: 100%;
-  object-fit: contain;
+
+.ng-invalid.ng-dirty {
+  border-right: 3px solid red;
+}
+
+.error p {
+  color: red;
+  position: relative;
+  font-size: 0.675em;
+}
+
+@media print, screen and (min-width: 40em) {
+
+  form h3 {
+      font-size: 1.1em
+  }
+
+  form label {
+    font-size: 1.1em
+  }
+
+}
+
+@media screen and (max-width: 39.9375em) {
+
+  h3 {
+      margin: 0em
+  }
+  
+  form label {
+    font-size: 1.1em
+  }
+
+  form .radio label {
+    font-size: 0.875em
+  }
+
+  form {
+    padding: 1em;
+    border-right: none;
+    border-bottom: 2px dashed #eee
+  }
 }

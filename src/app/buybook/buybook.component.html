@@ -1,0 +1,71 @@
+
+
+<h3>
+        <i class="mdi mdi-book-open-page-variant"></i> {{headTitle}}
+      </h3>
+      
+<div class="jumbotron">
+<div class="row">
+    
+<div class="logo col-xl-3 col-lg-3 col-md-3 col-sm-3" img src="Books-Store-Logo.jpg" class="img-responsive" alt="Book store logo"></div>
+<h3 class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> Student Exchange Book Store </h3>
+
+<form class="col-xl-2 col-lg-2 2col-md-3 col-sm-2" id="filterbox"> 
+    
+<input type="text" id="myInput" placeholder="Search for books..">
+</form>
+
+
+   
+
+</div>
+
+
+
+<form (ngSubmit)="searchBook(searchForm.value)" #searchForm="ngForm">
+        <fieldset ngModelGroup="search">
+
+                  
+                  <div class="row">
+                        <div class="columns">
+                          <label><i class="mdi mdi-buffer"></i> Title
+                            <input
+                              placeholder="title"
+                              name="title"
+                              type="text"
+                              pattern="[a-zA-Z0-9 ]+"
+                              ngModel
+                              #titleRef="ngModel"
+                              (input)="searchByTitle($event.target.value)"
+                              >
+                          </label>
+                  
+                          <div
+                            class="error"
+                            [hidden]="titleRef.valid || titleRef.pristine">
+                            <p>
+                              Invalid input
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+       
+                      <div class="row align-center radio">
+                            <input type="radio" name="filter" value="lower" id="lower" ngModel>
+                            <label for="lower">Lower than</label>
+                      
+                            <input type="radio" name="filter" value="higher" id="higher" ngModel>
+                            <label for="higher">Higher than</label>
+                          </div>
+                      
+                          <div class="row align-center">
+                            <button class="button" type="submit">
+                              <i class="mdi mdi-magnify"></i> Search
+                            </button>
+                          </div>
+                        </fieldset>
+                    </form>
+            
+          </div>
+          
+

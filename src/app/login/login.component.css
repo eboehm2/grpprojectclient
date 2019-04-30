@@ -1,18 +1,39 @@
+h2{
+  text-align: center;
+}
 .login-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 100vh;
   align-items: center;
+  background-image: url('/img/bg_school.jpg');
+  box-shadow: 0 0 8px 8px white inset;
 }
 
 .login-form {
   padding: 25px;
-  background-color: #FFF;
+  background-color: rgb(174, 199, 209);
+
 }
-.login-logo > img {
-  object-fit: cover;
+.login-logo >img{
+ 
   width: calc(100% + 50px);
-  display: block;
-  height: 200px;
+  /* display: block; */
+  height: 125px;
   margin: -25px -25px 25px -25px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(2rem + 2px);
+  padding: .1rem .1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #000000;
+  background-color: rgb(255, 255, 255);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  
 }

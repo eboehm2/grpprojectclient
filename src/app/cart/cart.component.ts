@@ -1,17 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone, Inject, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { HttpService } from '../../shared-service/http.service';
+import {FormsModule} from '@angular/forms';
+import { PublisherService } from '../services/publisher.service';
+import { UploaderOptions } from 'ngx-uploader';
+import {NgUploaderOptions} from 'ng-uploader';
+import { BookService} from '../services/book.service';
+import { AuthorService } from '../services/author.service';
+import {forkJoin} from 'rxjs';
 
-export interface IBike {
+export interface IBook {
   id?: number;
-  image: string;
-  price: number;
-  quantity: number;
+  title: string;
+  price: string;
+  isbn: string;
+  edition: string;
   description: string;
+  category: string;
+  condition: string;
+  cover: string;
 }
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -19,61 +29,145 @@ export interface IBike {
 })
 export class CartComponent implements OnInit {
 
-  bikes: Array<IBike> = [];
-  myName = '';
-  books = [];
+  book: IBook = {title: null, price: null, isbn: null, edition:
+    null, description: null, category: null, condition: null, cover: null};
+
+  pageTitle: string;
+  action: string;
+  currentUser = {};
+  edit = false;
+
+  loggedIn = false;
+  someVar: boolean;
+
+  authors = [];
+   publishers = [];
+books = [];
+
+
+
+  hasBaseDropZoneOver: boolean;
+  previewData: any;
+  private events: EventEmitter<any> = new EventEmitter();
+
   constructor(
-    private activatedRoute: ActivatedRoute,
+    @Inject(NgZone) private zone: NgZone,
+    private route: ActivatedRoute,
     private router: Router,
     private toastService: ToastService,
-    private http: HttpService
-  ) { }
+    private http: HttpService,
+    private forms: FormsModule,
+    private authorService: AuthorService,
+    private publisherService: PublisherService,
+    private bookService: BookService,
 
-  async ngOnInit() {
-    await this.refresh();
-    // this.createCar('car', { make: 'Tesla', model: 'X'});
-    // this.updateCar('car/id/1', { make: 'Ford', model: 'Fiasta'});
+  ) {
+     const {url} = this.router;
+  this.setTitle(url);
+  this.getDefaults();
+
+
+ }
+  ngOnInit() {
+    const token = localStorage.getItem('id_token');
+    // console.log('from login ngOnInit token: ', token);
+    if (token != null) {
+      this.loggedIn = true;
+    }
   }
 
-  async refresh() {
-    this.books = await this.getBooks('book');
+  setTitle (route) {
+    if (route === '/add') {
+        this.pageTitle = 'Add A Book To Sell';
+        this.action = 'Submit';
+
+    } else {
+      this.pageTitle = 'Edit Book';
+      this.action = 'Update';
+      this.edit = true;
+    }
   }
+
+
+   getDefaults () {
+     // we get the data needed from the server
+     const authors = this.authorService.getAuthor({authors: {}});
+     const publishers = this.publisherService.getPublisher({publisher: {}});
+     const books = this.bookService.getBook({books: {}});
+      // we fork all the http calls and get the results e.g. promise.all
+    forkJoin([ authors, publishers, books ])
+      .subscribe(results => {
+        this.authors = results[0];
+        this.publishers = results[1];
+        this.books = results[2];
+      });
+  }
+
+
+
+
+
+
+
+
+
+ sendBook (book: IBook ) {
+   console.log(book);
+   {
+     this.bookService.addBook(book);
+
+
+
+   }
+ }
+
+}
+
+
+
+
+
+
+
+  // async refresh() {
+    // this.books = await this.getBooks('book');
+  // }
 
   // getCars('car');
-  async getBooks(path: string) {
-    const resp = await this.http.get(path);
+  // async getBooks(path: string) {
+    // const resp = await this.http.get(path);
     // console.log('resp from getBooks()', resp);
-    return resp;
-  }
+    // return resp;
+  // }
 
-  async createBook() {
-    const book = {
-      make: null,
-      model: null,
-      year: null
-    };
-    const resp = await this.http.post('book', book);
+  // async createBook() {
+    // const book = {
+      // make: null,
+      // model: null,
+      // year: null
+    // };
+    // const resp = await this.http.post('book', book);
     // console.log('from createBook resp: ', resp);
-    if (resp) {
+    // if (resp) {
       // this.refresh();
-      this.books.unshift(resp);
-    } else {
-      this.toastService.showToast('danger', 3000, 'Book create failed!');
-    }
-    return resp;
-  }
+      // this.books.unshift(resp);
+    // } else {
+      // this.toastService.showToast('danger', 3000, 'Book create failed!');
+    // }
+    // return resp;
+  // }
 
-  async updateBook(book: any) {
+  // async updateBook(book: any) {
     // console.log('from updateBook book: ', book);
-    const resp = await this.http.put(`book/id/${book.id}`, book);
-    if (resp) {
-      this.toastService.showToast('success', 3000, 'Book updated successfully!');
-    }
-    return resp;
-  }
-  async removeBook(book: any, index: number) {
+    // const resp = await this.http.put(`book/id/${book.id}`, book);
+    // if (resp) {
+      // this.toastService.showToast('success', 3000, 'Book updated successfully!');
+    // }
+    // return resp;
+  // }
+  // async removeBook(book: any, index: number) {
     // console.log('from removeBook...', index);
-    this.books.splice(index, 1);
-  }
-  }
+    // this.books.splice(index, 1);
+  // }
+  // }
 
