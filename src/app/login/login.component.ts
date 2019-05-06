@@ -25,13 +25,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-     const token = localStorage.getItem('id_token');
+    const token = localStorage.getItem('id_token');
     if (token != null) {
-      // this.loggedIn = true;
-      // this.router.navigate(['./home']);
-    //  } else {
-      //  this.loggedIn = false;
-     }
+      this.loggedIn = true;
+      this.router.navigate(['./home']);
+  }
   }
 
 
@@ -40,8 +38,8 @@ export class LoginComponent implements OnInit {
     if (resp && resp.token) {
       localStorage.setItem('id_token', resp.token);
       this.toastService.showToast('success', 3000, 'Login Success.');
-      //  this.router.navigate(['']);
-      // this.router.navigate(['./cart']);
+        this.router.navigate(['']);
+
     } else {
       this.toastService.showToast('danger', 3000, 'Login Failed.');
     }

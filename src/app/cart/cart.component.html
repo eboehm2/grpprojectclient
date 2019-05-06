@@ -2,13 +2,14 @@
 
 <h3>
     <i class="mdi mdi-book-open-page-variant"></i> {{headTitle}}
+    <i class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> Fresno State Student Textbook Exchange Book-Store </i>
   </h3>
   
 <div class="jumbotron">
 <div class="row">
 
 <div class="logo col-xl-3 col-lg-3 col-md-3 col-sm-3" img src="Books-Store-Logo.jpg" class="img-responsive" alt="Book store logo"></div>
-<h3 class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> Student Exchange Book Store </h3>
+
 
 <form class="col-xl-2 col-lg-2 2col-md-3 col-sm-2" id="filterbox"> 
 
@@ -25,10 +26,29 @@
     <h2>{{pageTitle}} <i class="mdi mdi-pen"></i> </h2>
   </div>
   
-  <form   #bookForm="ngForm">
-    
+  <form  #bookForm="ngForm">
+    <div>
+    <img class="cover" [src]="book.cover" alt="bike">
+    <p>
+      <label for="id">Image Url:</label>
+      
+      <input
+              
+              name="book.cover"
+              type="text"
+             
+              
+              ngModel
+              #coverRef="ngModel" 
+              [(ngModel)]="book.cover">
+              
+    </p>
+    <div>
+      
+    </div>
+    </div>
       <div class="row">
-        <div class="small-12 medium-6 columns">
+        <span class="small-12 medium-6 columns">
           <label><i class="mdi mdi-layers"></i> Title
             <input
               placeholder="title"
@@ -40,16 +60,16 @@
               #titleRef="ngModel" 
               [(ngModel)]="book.title">
               
-            <div
+            <span
               class="error"
               [hidden]="titleRef.valid || titleRef.pristine">
               <p>
                 Title must be filled, it's required.
               </p>
-            </div>
+            </span>
   
           </label>
-        </div>
+        </span>
   
         <div class="small-12 medium-6 columns">
           <label><i class="mdi mdi-account"></i> Author
@@ -57,7 +77,7 @@
             id ="author"
               name="author"
               
-              required
+              
               ngModel
               #authorRef="ngModel"
               >
@@ -84,7 +104,7 @@
             id= "publisher"
               name="publisher"
              
-              required
+              
               ngModel
               #publisherRef="ngModel"
               >
@@ -133,7 +153,7 @@
                 placeholder="Textbook Edition"
                 name="title"
                 type="text"
-                pattern="[a-zA-Z0-9 ]+"
+                
                 required
                 ngModel
                 #editionRef="ngModel" 
@@ -159,7 +179,7 @@
                   required
                   ngModel
                   #categoryRef="ngModel" 
-                  [(ngModel)]="book.edition">
+                  [(ngModel)]="book.category">
                   
                 <div
                   class="error"
@@ -173,7 +193,7 @@
             </div>
       </div>
   
-      <div class="row">
+      <div class="row align-center">
         <div class="small-12 medium-6 columns">
           <label><i class="mdi mdi-currency-usd"></i> Price
             <input
@@ -186,6 +206,7 @@
               
               ngModel
               #priceRef="ngModel"
+              [(ngModel)]="book.price"
               >
           </label>
           <div
@@ -220,15 +241,70 @@
           </div>
         </div>
           <div class="row">
-
+            <div class="form-group">
+              <label><i class="mdi mdi-currency-usd"></i> Description
+                <textarea class="form-control" rows="5"
+               
+                  type="textarea"
+                  placeholder="Description"
+                  name="Description"
+                  
+                  required
+                  
+                  ngModel
+                  #DescriptionRef="ngModel"
+                  [(ngModel)]="book.description">
+                > 
+              </textarea>
+              </label>
+              <div
+                class="error"
+                [hidden]="DescriptionRef.valid || DescriptionRef.pristine">
+                <p>
+                  Description must be filled, it's required.
+                </p>
+              </div>
+           
        </div>
+       <div class="small-12 medium-6 columns">
+          <label><i class="mdi mdi-layers"></i>Add New Publisher
+            <input
+              placeholder="New Publisher"
+              name="title"
+              type="text"
+              pattern="[a-zA-Z0-9 ]+"
+              
+              ngModel
+              #conditionRef="ngModel" 
+              [(ngModel)]="publisher.publisher">
+              
     
   
+          </label>
+        </div>
+        <div class="small-12 medium-6 columns">
+            <label><i class="mdi mdi-layers"></i>Add New Author
+              <input
+                placeholder="New author"
+                name="title"
+                type="text"
+                pattern="[a-zA-Z0-9 ]+"
+                
+                ngModel
+                #conditionRef="ngModel" 
+                [(ngModel)]="author.author">
+                
+      
+    
+            </label>
+          </div>
+    </div>
+ 
      
       <div class="row align-center">
         <div class="column small-4">
           <button
-            class="button" (click)="sendBook(book)"
+            class="button" (click)="sendBook(book)" (click)="sendPublisher(publisher)" (click)="sendAuthor(author)"
             type="submit"
             [disabled]="!bookForm.form.valid"
             >
@@ -253,4 +329,10 @@
         </div>
       </div>
    
+
+
+      
   </form>
+
+
+  

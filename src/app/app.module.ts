@@ -14,8 +14,10 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { SharedServiceModule } from '../shared-service/shared-service.module';
-import { BookService, AuthorService, PublisherService, } from './services';
-import {NgUploaderOptions} from 'ng-uploader';
+import { BookService, AuthorService, PublisherService, SearchService} from './services';
+import { EditComponent } from './edit/edit.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,8 @@ import {NgUploaderOptions} from 'ng-uploader';
     CartComponent,
     RegisterComponent,
     BuyBookComponent,
-
+    EditComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,12 +39,15 @@ import {NgUploaderOptions} from 'ng-uploader';
     MaterialDesignModule,
     SharedServiceModule,
     FormsModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [
     BookService,
     AuthorService,
     PublisherService,
+    SearchService,
+
   ],
   bootstrap: [AppComponent]
 })

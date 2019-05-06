@@ -20,7 +20,7 @@ export class BookService {
   }
 
   async getBook (book: any) {
-    const resp = await this.http.get('book', book);
+    const resp = await this.http.get('book');
     return resp;
   }
 
@@ -28,3 +28,4 @@ export class BookService {
     return this.http.delete(`${this.path}/${id}`);
   }
 }
+

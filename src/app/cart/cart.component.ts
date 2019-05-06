@@ -6,7 +6,7 @@ import { HttpService } from '../../shared-service/http.service';
 import {FormsModule} from '@angular/forms';
 import { PublisherService } from '../services/publisher.service';
 import { UploaderOptions } from 'ngx-uploader';
-import {NgUploaderOptions} from 'ng-uploader';
+
 import { BookService} from '../services/book.service';
 import { AuthorService } from '../services/author.service';
 import {forkJoin} from 'rxjs';
@@ -22,6 +22,14 @@ export interface IBook {
   condition: string;
   cover: string;
 }
+export interface IPublisher {
+  id?: number;
+  publisher: string;
+}
+export interface IAuthor {
+  id?: number;
+  author: string;
+}
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -32,12 +40,16 @@ export class CartComponent implements OnInit {
   book: IBook = {title: null, price: null, isbn: null, edition:
     null, description: null, category: null, condition: null, cover: null};
 
+    publisher: IPublisher = { publisher: null};
+    author: IAuthor = { author: null};
+
   pageTitle: string;
   action: string;
   currentUser = {};
   edit = false;
 
   loggedIn = false;
+
   someVar: boolean;
 
   authors = [];
@@ -68,16 +80,37 @@ books = [];
 
 
  }
-  ngOnInit() {
-    const token = localStorage.getItem('id_token');
-    // console.log('from login ngOnInit token: ', token);
-    if (token != null) {
-      this.loggedIn = true;
-    }
+  ngOnInit()  {const token = localStorage.getItem('id_token');
+  // console.log('from login ngOnInit token: ', token);
+    if (token == null) {
+     this.loggedIn = false;
+      this.router.navigate (['./login']);
+   } else {
+       this.loggedIn = true;
+   }
   }
+       async addPublisher() {
+        const publisher = {
+          publisher: null,
+
+        };
+
+        const resp = await this.http.post('publisher', publisher);
+        // console.log('from createBook resp: ', resp);
+        if (resp) {
+          // this.refresh();
+
+        } else {
+          this.toastService.showToast('danger', 3000, 'Book create failed!');
+        }
+        return resp;
+      }
+
+
 
   setTitle (route) {
-    if (route === '/add') {
+
+    if (route === '/cart') {
         this.pageTitle = 'Add A Book To Sell';
         this.action = 'Submit';
 
@@ -117,9 +150,16 @@ books = [];
      this.bookService.addBook(book);
 
 
-
    }
  }
+
+ sendPublisher (publisher: IPublisher) {
+   console.log (publisher);
+   this.publisherService.addPublisher(publisher);
+ }
+ sendAuthor (author: IAuthor) {
+  console.log (author);
+  this.authorService.addAuthor(author);
 
 }
 
@@ -171,3 +211,4 @@ books = [];
   // }
   // }
 
+}

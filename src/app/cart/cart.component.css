@@ -3,13 +3,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  
+
 }
 .jumbotron{
-  background-image: url('#');
+
   background-repeat: no-repeat;
   background-size: contain;
-  
+ margin: 10px
   
 }
 #filterbox{
@@ -74,14 +74,7 @@ transform: rotateY(180deg);
   visibility: hidden;
 }
 
-.contact-grid {
-display: grid;
-margin: 20px auto;
-width: 90%;
-height: 80vh;
-max-height: 80vh;
-overflow: auto;
-}
+
 
 form label {
   font-size: 1.2em
@@ -101,8 +94,9 @@ h3 {
 }
 
 form {
-  padding-right: 1.5em;
-  border-right: 2px solid #eee
+  padding-right: 2.5em;
+  border-right: 2px solid #eee;
+  padding: 10px 10px 10px 10px;
 }
 
 .ng-invalid.ng-dirty {
@@ -118,7 +112,9 @@ form {
 @media print, screen and (min-width: 40em) {
 
   form h3 {
-      font-size: 1.1em
+      font-size: 2.1em;
+      text-align: center;
+      
   }
 
   form label {
@@ -130,20 +126,56 @@ form {
 @media screen and (max-width: 39.9375em) {
 
   h3 {
-      margin: 0em
+      margin: 1em
   }
   
   form label {
-    font-size: 1.1em
+    font-size: 3.1em
   }
 
-  form .radio label {
-    font-size: 0.875em
-  }
+ 
 
-  form {
-    padding: 1em;
-    border-right: none;
-    border-bottom: 2px dashed #eee
-  }
+}
+
+.main-nav {
+  margin:20px auto;
+  background-color: transparent !important;
+  padding:0 5%;
+}
+.nav-action-container {
+  padding:0 5%;
+}
+.contact-grid {
+  display: grid;
+  margin: 20px auto;
+  width: 90%;
+  height: 80vh;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+}
+
+.nav-action-container>li>button {
+  margin-right: 9px;
+}
+
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+}
+.pull-right {
+  float: right;
+}
+.cover {
+  height: 150px;
+  width: 100%;
+  object-fit: contain;
 }

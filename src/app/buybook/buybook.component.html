@@ -1,71 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary main-nav">
 
-
-<h3>
-        <i class="mdi mdi-book-open-page-variant"></i> {{headTitle}}
-      </h3>
-      
-<div class="jumbotron">
-<div class="row">
-    
-<div class="logo col-xl-3 col-lg-3 col-md-3 col-sm-3" img src="Books-Store-Logo.jpg" class="img-responsive" alt="Book store logo"></div>
-<h3 class="col-xl-6 col-lg-6 col-md-6 col-sm-6"> Student Exchange Book Store </h3>
-
-<form class="col-xl-2 col-lg-2 2col-md-3 col-sm-2" id="filterbox"> 
-    
-<input type="text" id="myInput" placeholder="Search for books..">
-</form>
-
-
-   
-
-</div>
-
-
-
-<form (ngSubmit)="searchBook(searchForm.value)" #searchForm="ngForm">
-        <fieldset ngModelGroup="search">
-
-                  
-                  <div class="row">
-                        <div class="columns">
-                          <label><i class="mdi mdi-buffer"></i> Title
-                            <input
-                              placeholder="title"
-                              name="title"
-                              type="text"
-                              pattern="[a-zA-Z0-9 ]+"
-                              ngModel
-                              #titleRef="ngModel"
-                              (input)="searchByTitle($event.target.value)"
-                              >
-                          </label>
-                  
-                          <div
-                            class="error"
-                            [hidden]="titleRef.valid || titleRef.pristine">
-                            <p>
-                              Invalid input
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+  </nav>
+  <div class="container text-center">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="container"></div>
+          <div class="search-hero">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder= "&#61442; search by title or isbn">
+        </div>
        
-                      <div class="row align-center radio">
-                            <input type="radio" name="filter" value="lower" id="lower" ngModel>
-                            <label for="lower">Lower than</label>
-                      
-                            <input type="radio" name="filter" value="higher" id="higher" ngModel>
-                            <label for="higher">Higher than</label>
-                          </div>
-                      
-                          <div class="row align-center">
-                            <button class="button" type="submit">
-                              <i class="mdi mdi-magnify"></i> Search
-                            </button>
-                          </div>
-                        </fieldset>
-                    </form>
+      </div>
+
+  
+  <div class="contact-grid">
+    <div class="gallery-grid">
+      <mat-card class="example-card" *ngFor="let book of books| filter:searchText">
+        <mat-card-content>
+            <img class="cover" [src]="book.cover" alt="book">
+         
+            
+            
+            <p>
+               
+                 <output >{{book.title}}</output>
+            </p>
+
+           
+            <p>
+                <output aria-describedby="basic-addon1">Book Description:  {{book.description}}</output>
+            </p>
+            <p>
+                <output aria-describedby="basic-addon1" class="form-control">ISBN: {{book.isbn}}</output>
+            </p>
+            <p>
+                <output class="form-control" aria-describedby="basic-addon1">Condition: {{book.condition}}</output>
+            </p>
+            <p>
+                <output class="form-control"> Category: {{book.category}}</output>
+            </p>
+            <p>
+                <output class="form-control">Price: {{book.price}}</output>
+            </p>
+           
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="btn-group pull-right">
+              <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
             
           </div>
-          
 
+          
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div id="custom-modal-1">
+        <h1>A Custom Modal!</h1>
+        <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+        <button (click)="closeModal('custom-modal-1');">Close</button>
+    </div>
+    
+    <div id="custom-modal-2">
+        <h1 style="height:1000px">A Tall Custom Modal!</h1>
+        <button (click)="closeModal('custom-modal-2');">Close</button>
+    </div>
+  </div>
+
+
+  
+  

@@ -14,8 +14,12 @@ export class AuthorService {
     return resp;
   }
 
-  async getAuthor (authors) {
-    const resp = await this.http.get('author', authors);
+  async updateAuthor (author: any) {
+    const resp = await this.http.put('author/id/${author.id}', author);
+    return resp;
+  }
+  async getAuthor (author: any) {
+    const resp = await this.http.get('author', );
     return resp;
   }
 

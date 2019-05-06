@@ -1,6 +1,4 @@
-a{
-  font: 12px;
-}
+
 .main-nav {
   margin:20px auto;
   background-color: transparent !important;
@@ -12,19 +10,18 @@ a{
 .contact-grid {
   display: grid;
   margin: 20px auto;
-  width: 120%;
-  height: 100vh;
-  max-height: 100vh;
+  width: 90%;
+  height: 80vh;
+  max-height: 80vh;
   overflow: auto;
-  padding: 25px;
 }
 
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-gap: 2em;
+  grid-gap: 1em;
 }
 
 .nav-action-container>li>button {
@@ -44,25 +41,3 @@ a{
   width: 100%;
   object-fit: contain;
 }
-
-
-
-.container {
-  padding-top: 50px;
-  padding-bottom: 10px;
-  color: #405065;
-}
-
-.search-hero {
-  max-width: 500px;
-  padding-bottom: 50px;
-  margin:auto;
-}
-
-.form-control {
-  box-shadow: 0 10px 40px 0 #B0C1D9;
-}
-.form-control::placeholder  {
-  font-family: FontAwesome;
-}
-
