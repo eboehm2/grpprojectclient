@@ -9,7 +9,7 @@ import {MatDialogModule} from '@angular/material';
 import {MatCardModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import {MatDialog, MatDialogConfig} from '@angular/material';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 export interface IBook {
   id?: number;

@@ -17,7 +17,7 @@ import { SharedServiceModule } from '../shared-service/shared-service.module';
 import { BookService, AuthorService, PublisherService, SearchService} from './services';
 import { EditComponent } from './edit/edit.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { ContactComponent } from './contact/contact.component';
 import {MatCardModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material';
@@ -33,7 +33,7 @@ import {MatDialog} from '@angular/material';
     RegisterComponent,
     BuyBookComponent,
     EditComponent,
-
+ContactComponent
 
 
   ],

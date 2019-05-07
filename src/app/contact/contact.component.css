@@ -1,26 +1,6 @@
+/*validation*/
 
-html,
-body {
-    height: 100%;
-}
-
-.container 
-{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-	background-size: cover;
-	background-repeat:no-repeat;    
-}
-.container-box
-{
-	display:inline-block; 
-	padding:120px; 
-	background: rgba(0, 0, 0, .5);
-	border: 1px solid #333;	
-}
-
-
+.ng-valid[required], .ng-valid.required {border: 1px solid #42A948;}
+.error {color:#ff0000;}
+.success { color:green; }
+.contact-message { text-align: center; }
