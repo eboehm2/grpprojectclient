@@ -1,14 +1,4 @@
-a{
-  font: 12px;
-}
-.main-nav {
-  margin:20px auto;
-  background-color: transparent !important;
-  padding:0 5%;
-}
-.nav-action-container {
-  padding:0 5%;
-}
+
 .contact-grid {
   display: grid;
   margin: 20px auto;
@@ -65,4 +55,5 @@ a{
 .form-control::placeholder  {
   font-family: FontAwesome;
 }
+
 

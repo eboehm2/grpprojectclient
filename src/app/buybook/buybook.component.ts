@@ -5,8 +5,11 @@ import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { HttpService } from '../../shared-service/http.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
-
+import {MatDialogModule} from '@angular/material';
+import {MatCardModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export interface IBook {
   id?: number;
@@ -34,6 +37,7 @@ export class BuyBookComponent implements OnInit {
     searchText;
     books = [];
     constructor(
+      public dialog: MatDialog,
       private activatedRoute: ActivatedRoute,
       private router: Router,
       private toastService: ToastService,
@@ -77,5 +81,10 @@ export class BuyBookComponent implements OnInit {
            localStorage.removeItem('id_token');
        }
 }
+
 }
+
+
+
+
 

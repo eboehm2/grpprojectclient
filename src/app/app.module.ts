@@ -17,7 +17,12 @@ import { SharedServiceModule } from '../shared-service/shared-service.module';
 import { BookService, AuthorService, PublisherService, SearchService} from './services';
 import { EditComponent } from './edit/edit.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { ContactComponent } from './contact/contact.component';
+
+import {MatCardModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import {MatDialogModule} from '@angular/material';
+import {MatDialog} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +33,9 @@ import { ContactComponent } from './contact/contact.component';
     RegisterComponent,
     BuyBookComponent,
     EditComponent,
-    ContactComponent,
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,12 @@ import { ContactComponent } from './contact/contact.component';
     MaterialDesignModule,
     SharedServiceModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
 
   ],
   providers: [
@@ -49,6 +61,7 @@ import { ContactComponent } from './contact/contact.component';
     SearchService,
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

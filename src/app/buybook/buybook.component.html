@@ -42,32 +42,17 @@
             </p>
             <p>
                 <output class="form-control">Price: {{book.price}}</output>
+              
             </p>
+            
            
         </mat-card-content>
-        <mat-card-actions>
-          <div class="btn-group pull-right">
-              <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-            
-          </div>
-
-          
-        </mat-card-actions>
+     
       </mat-card>
     </div>
 
-    <div id="custom-modal-1">
-        <h1>A Custom Modal!</h1>
-        <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-        <button (click)="closeModal('custom-modal-1');">Close</button>
-    </div>
     
-    <div id="custom-modal-2">
-        <h1 style="height:1000px">A Tall Custom Modal!</h1>
-        <button (click)="closeModal('custom-modal-2');">Close</button>
-    </div>
   </div>
-
 
   
   
