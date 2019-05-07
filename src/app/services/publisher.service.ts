@@ -15,8 +15,12 @@ export class PublisherService {
     return resp;
   }
 
+  async updatePublisher (publisher: any) {
+    const resp = await this.http.put('author/id/${author.id}', publisher);
+    return resp;
+  }
   async getPublisher (publisher) {
-    const resp = await this.http.get('publisher', publisher);
+    const resp = await this.http.get('publisher', );
     return resp;
   }
 

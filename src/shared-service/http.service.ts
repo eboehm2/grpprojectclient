@@ -20,13 +20,14 @@ export class HttpService {
     console.log('from http service testing......');
   }
   // get('car');
-  async get(path: any, payload: any) {
+  async get(path: string) {
     const resp = await this.http.get(this.apiURL + path, this.headers).toPromise();
   //  return this.http.get(this.apiURL + path, this.headers).toPromise();
 return resp.json();
   }
+
 // put('book/id/1',) {title: "make"}
-async put(path: any, payload: any) {
+async put(path: string, payload: any) {
   const resp = await this.http.put(this.apiURL + path, payload, this.headers).toPromise();
   // console.log('from http service put()', resp.json());
   return resp.json();
@@ -60,12 +61,11 @@ async delete(path: string) {
      return resp.json();
    }
    get headers() {
-     const token = localStorage.getItem('id_token') || null;
-     const headers = new Headers({ 'Content-Type': 'application/json' });
-     if (token) {
-       headers.append('Authorization', 'Bearer ' + token);
-     }
-
+    const token = localStorage.getItem('id_token') || null;
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    if (token) {
+      headers.append('Authorization', 'Bearer ' + token);
+    }
     return {
       headers,
       withCredentials: true

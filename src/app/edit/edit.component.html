@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary main-nav">
+
+  </nav>
+  
+
+  
+  <div class="contact-grid">
+    <div class="gallery-grid">
+      <mat-card class="example-card" *ngFor="let book of books; let i = index">
+        <mat-card-content>
+          <img class="cover" [src]="book.cover" alt="bike">
+          <p>
+            <label for="id">Image Url:</label>
+            <input [(ngModel)]="book.cover" type="text" class="form-control" placeholder="Image" aria-label="Image">
+          </p>
+          
+          <p>
+            <label for="title">Title</label>
+            <input [(ngModel)]="book.title" type="text" class="form-control" placeholder="Title" aria-label="title"
+              aria-describedby="basic-addon1">
+          </p>
+          <p>
+            <label for="price">isbn</label>
+            <input [(ngModel)]="book.isbn" type="text" class="form-control" placeholder="Model" aria-label="price"
+              aria-describedby="basic-addon1">
+          </p>
+          <p>
+            <label for="description">Condition:</label>
+            <input [(ngModel)]="book.description" type="text" class="form-control" placeholder="Description"
+              aria-label="desc" aria-describedby="basic-addon1">
+          </p>
+          <p>
+            <label for="price">Price</label>
+            <input [(ngModel)]="book.price" type="text" class="form-control" placeholder="Price" aria-label="price"
+              aria-describedby="basic-addon1">
+          </p>
+      
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="btn-group pull-right">
+            <button mat-raised-button color="primary" class="pull-right" (click)="updateCar(car)">Save Changes</button>
+            <button mat-raised-button color="warn" (click)="removeCar(car, i)">Delete</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

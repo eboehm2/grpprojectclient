@@ -16,7 +16,7 @@
                     <a class="nav-link" routerLink ="./edit" >EDIT BOOK</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink ="./add" >SELL BOOK</a>
+                    <a class="nav-link" routerLink ="./cart" >SELL BOOK</a>
                   </li>
                   <li class="nav-item">
                         <a class="nav-link" routerLink="./buybook">BUY BOOKS</a>
@@ -28,8 +28,8 @@
           </ul>
           
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="form-control btn btn-outline-success my-2 my-sm-0" type="submit">Search for Book</button>
+           
+            
           
               <button class= "form-control btn btn-outline-success my-2 my-sm-0" *ngIf="!currentUser" (click)="logout()">Logout</button>
             

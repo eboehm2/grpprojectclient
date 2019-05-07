@@ -1,73 +1,81 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { HttpService } from '../../shared-service/http.service';
-import { FormsModule } from '@angular/forms';
-export interface IBike {
-    id?: number;
-    image: string;
-    price: number;
-    quantity: number;
-    description: string;
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
+
+export interface IBook {
+  id?: number;
+  title: string;
+  price: string;
+  isbn: string;
+  edition: string;
+  description: string;
+  category: string;
+  condition: string;
+  cover: string;
 }
+
 
 @Component({
     selector: 'app-buybook',
     templateUrl: './buybook.component.html',
     styleUrls: ['./buybook.component.css']
 })
-export class BuyBookComponent  {
-    @Input() headTitle;
-    @Output() searchObj = new EventEmitter();
-    @Output() searchTitle = new EventEmitter();
-    @Output() searchAuthor = new EventEmitter();
-    @Output() searchPrice = new EventEmitter();
+export class BuyBookComponent implements OnInit {
 
-    setPriceObj(search): any {
-        if ('price' in search) {
-            const number = search['price'];
-            if (search['filter'] === 'lower') {
-                return { price: { number, lower: true } };
-            } else if (search['filter'] === 'higher') {
-                return { price: { number, higher: true } };
-            } else {
-                return { price: number };
-            }
-        }
+
+  book: Array<IBook> = [];
+
+    searchText;
+    books = [];
+    constructor(
+      private activatedRoute: ActivatedRoute,
+      private router: Router,
+      private toastService: ToastService,
+      private http: HttpService,
+
+    ) { }
+    async ngOnInit() {
+      await this.refresh();
+
+
+
+        const payload = {
+          email: 'johndoe',
+          password: '1234'
+        //   this.router.navigate(['']);
+        // } else {
+
+
+        };
+        const resp: any = await this.http.post('user/login', payload);
+
+
+        if (resp && resp.token) {
+          localStorage.setItem('id_token', resp.token);
+    }
+  }
+
+    async refresh() {
+      this.books = await this.getBooks('book');
     }
 
-    makeBookObj (values): any {
-        const {search: filters} = values;
-        const book = {};
-
-        for (const key in filters) {
-            if (filters[key] !== '') {
-                if (key === 'author') {
-                  book[key] = [filters[key]];
-                } else {
-                  book[key] = filters[key];
-                }
-            }
-        }
-        if (filters['price'] !== '') {
-            const price = this.setPriceObj(filters);
-            delete book['filter'];
-            Object.assign(book, price);
-        }
-        return book;
-      }
-      searchBook (search) {
-        this.searchObj.next(this.makeBookObj(search));
-      }
-      searchByTitle (title) {
-        this.searchTitle.next({title});
-      }
-      searchByAuthor (author) {
-        this.searchAuthor.next({author});
-      }
-
-      searchByPrice (price) {
-        this.searchPrice.next({price});
-      }
+    // getCars('car');
+    async getBooks(path: string) {
+      const resp = await this.http.get(path);
+      // console.log('resp from getBooks()', resp);
+      return resp;
     }
+
+    async logout() {
+      {
+           localStorage.removeItem('id_token');
+       }
+}
+}
+
